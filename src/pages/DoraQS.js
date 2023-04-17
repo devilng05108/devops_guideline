@@ -1,10 +1,16 @@
-import { Link, Navigate, useLocation,useParams } from 'react-router-dom';
+import {
+  Link,
+  Navigate,
+  useLocation,
+  useParams,
+  useNavigate,
+} from 'react-router-dom';
 import React from 'react';
 import classes from '../styles/DoraQs.module.css';
 
  export function withRouter(Children) {
    return (props) => {
-     const match = { params: useParams(),location: useLocation() };
+     const match = { params: useParams(),location: useLocation(),navigate:useNavigate() };
      return <Children {...props} match={match} />;
    };
  }
@@ -29,6 +35,10 @@ import classes from '../styles/DoraQs.module.css';
       done: true
     })
   }
+
+  goBack = () =>{
+    this.props.match.navigate(-2);
+  }
   render(){
       return (
         <div className={classes.mainContainer}>
@@ -46,17 +56,28 @@ import classes from '../styles/DoraQs.module.css';
             >
               Click here: DORA DevOps Quick Check tool
             </a>
-            <h3 className={classes.subtitle}>Select your software delivery performance level:</h3>
-            <select className={classes.select} value={this.state.value} onChange={this.handleChange}>
+            <h3 className={classes.subtitle}>
+              Select your software delivery performance level:
+            </h3>
+            <select
+              className={classes.select}
+              value={this.state.value}
+              onChange={this.handleChange}
+            >
               <option value="Elite">Elite</option>
               <option value="High">High</option>
               <option value="Medium">Medium</option>
               <option value="Low">Low</option>
             </select>
             {/* <p>{this.state.value}</p> */}
-            <button className={classes.but} onClick={this.next}>
-              Next >
-            </button>
+            <div className={classes.butGroup}>
+              <button className={classes.butBack} onClick={this.goBack}>
+                Back
+              </button>
+              <button className={classes.butNext} onClick={this.next}>
+                Next
+              </button>
+            </div>
             {this.state.done && (
               <Navigate
                 to="/table"

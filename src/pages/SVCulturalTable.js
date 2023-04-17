@@ -19,7 +19,7 @@ export function withRouter(Children) {
   };
 }
 
-class SVTable extends React.Component {
+class SVCulturalTable extends React.Component {
   constructor(props) {
     super(props);
 
@@ -270,24 +270,24 @@ class SVTable extends React.Component {
       }
     });
 
-    let doraLevel = this.props.match.location.state.doraLevel;
-    var finalArr = newArray.filter(function (el) {
-      if (doraLevel == 'Low') {
-        return el.M1;
-      } else if (doraLevel == 'Medium') {
-        return el.M2;
-      } else if (doraLevel == 'High') {
-        return el.M3;
-      } else {
-        return el.M4;
-      }
-    });
-    console.log(finalArr);
+    // let doraLevel = this.props.match.location.state.doraLevel;
+    // var finalArr = newArray.filter(function (el) {
+    //   if (doraLevel == 'Low') {
+    //     return el.M1;
+    //   } else if (doraLevel == 'Medium') {
+    //     return el.M2;
+    //   } else if (doraLevel == 'High') {
+    //     return el.M3;
+    //   } else {
+    //     return el.M4;
+    //   }
+    // });
+    // console.log(finalArr);
     this.state = {
       value: 'Elite',
       done: false,
       culture: culture,
-      SV: finalArr,
+      SV: newArray,
     };
   }
 
@@ -325,16 +325,16 @@ class SVTable extends React.Component {
           <p className={classes.topText}>
             Cultural Level: <b>{this.state.culture}</b>
           </p>
-          <p className={classes.topText}>
+          {/* <p className={classes.topText}>
             Software Delivery Performance level:{' '}
             <b>{this.props.match.location.state.doraLevel}</b>
-          </p>
+          </p> */}
           <table className={classes.table}>
             <tr>
               <th>Software Vulnerabilities</th>
               <th>Technical Solution</th>
               <th>Risk rating ({this.state.culture})</th>
-              <th>Risk rating ({this.props.match.location.state.doraLevel})</th>
+              {/* <th>Risk rating ({this.props.match.location.state.doraLevel})</th> */}
             </tr>
             {this.state.SV.map((val, key) => {
               return (
@@ -377,7 +377,7 @@ class SVTable extends React.Component {
                       {val.C3}
                     </td>
                   ) : null}
-                  {doraLevel == 'Low' ? (
+                  {/* {doraLevel == 'Low' ? (
                     <td
                       style={{
                         textAlign: 'center',
@@ -416,7 +416,7 @@ class SVTable extends React.Component {
                     >
                       {val.M4}
                     </td>
-                  ) : null}
+                  ) : null} */}
                   {/* {
                 if(this.state.culture=='Pathological'){
                   <td>{val.C1}</td>
@@ -437,7 +437,7 @@ class SVTable extends React.Component {
           </div>
           {this.state.done && (
             <Navigate
-              to="/culturaltable"
+              to="/doratable"
               state={{
                 westrumScore: this.props.match.location.state.westrumScore,
                 doraLevel: this.props.match.location.state.doraLevel,
@@ -451,4 +451,4 @@ class SVTable extends React.Component {
   }
 }
 
-export default withRouter(SVTable);
+export default withRouter(SVCulturalTable);

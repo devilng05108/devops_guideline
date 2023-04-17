@@ -8,6 +8,8 @@ import './index.css';
 import WestrumQS from './pages/WestrumQS';
 import DoraQS from './pages/DoraQS';
 import SVTable from './pages/SVTable';
+import SVCulturalTable from './pages/SVCulturalTable';
+import SVDoraTable from './pages/SVDoraTable';
 
 
 // const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -28,6 +30,14 @@ const router = createBrowserRouter([
   {
     path: 'table',
     element: <SVTable/>,
+  },
+  {
+    path: 'culturaltable',
+    element: <SVCulturalTable/>,
+  },
+  {
+    path: 'doratable',
+    element: <SVDoraTable/>,
   },
 ]);
 
